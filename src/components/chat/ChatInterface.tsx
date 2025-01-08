@@ -14,8 +14,13 @@ import { translations } from "./constants/translations";
 import { animations } from "./styles/animations";
 
 // 初始化 OpenAI 客戶端
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+if (!apiKey) {
+  console.error('OpenAI API Key is missing');
+}
+
 const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  apiKey: apiKey || 'dummy-key', // 防止客戶端報錯
   dangerouslyAllowBrowser: true
 });
 
