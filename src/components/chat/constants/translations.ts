@@ -26,12 +26,14 @@ export const translations: Translations = {
 2. 實驗過程中，您將通過選擇不同的選項來推進故事。
 3. 每個選擇都可能影響故事的發展方向。
 4. 實驗結束後，您可能獲得獎勵代幣。
-5. 請認真閱讀每個選項，做出您認為最適合的選擇。`,
+5. 請認真閱讀每個選項，做出您認為最適合的選擇。
+6. 注意：此遊戲目前部署在 FUEL Testnet 上。`,
     en: `1. This is a blockchain interactive experiment, please ensure your wallet is connected.
 2. During the experiment, you will progress the story through different choices.
 3. Each choice may affect the story's direction.
 4. You may receive reward tokens after the experiment.
-5. Please read each option carefully and make the choice you think is best.`
+5. Please read each option carefully and make the choice you think is best.
+6. Note: This game is currently deployed on FUEL Testnet.`
   },
   processing: {
     zh: "處理中",
