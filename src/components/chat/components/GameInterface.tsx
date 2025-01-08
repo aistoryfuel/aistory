@@ -140,7 +140,7 @@ export const GameInterface: React.FC<GameProps> = ({
                 }}>
                   {">>"} {translations.transactionHash[language]}: 
                   <a 
-                    href={`https://app${process.env.VITE_IS_TESTNET === "true" ? "-testnet" : ""}.fuel.network/tx/${message.txHash}/simple`}
+                    href={`https://app${import.meta.env.VITE_IS_TESTNET === "true" ? "-testnet" : ""}.fuel.network/tx/${message.txHash}/simple`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
