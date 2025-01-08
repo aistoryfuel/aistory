@@ -75,7 +75,7 @@ export default function ChatInterface() {
       try {
         const balance = await checkAIWalletBalance();
         setWalletInfo({
-          aiBalance: balance.rewardBalance?.format() || "0",
+          aiBalance: balance.rewardBalance?.toString() || "0",
           rewardAssetId: import.meta.env.VITE_REWARD_ASSET_ID
         });
       } catch (error) {

@@ -143,12 +143,15 @@ export const GameInterface: React.FC<GameProps> = ({
                     href={`https://app${process.env.VITE_IS_TESTNET === "true" ? "-testnet" : ""}.fuel.network/tx/${message.txHash}/simple`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    css={{
+                    style={{
                       color: "#00ffff",
-                      textDecoration: "underline",
-                      "&:hover": {
-                        textShadow: "0 0 8px #00ffff",
-                      }
+                      textDecoration: "underline"
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.textShadow = "0 0 8px #00ffff";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.textShadow = "none";
                     }}
                   >
                     {message.txHash}
