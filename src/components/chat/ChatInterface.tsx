@@ -104,11 +104,8 @@ export default function ChatInterface() {
       }, 1000);
       return;
     }
-    console.log('Starting game...');
-    console.log('Initial story:', FIRST_STORY[language]);
     setGameStarted(true);
     setMessages([FIRST_STORY[language]]);
-    console.log('Messages set:', [FIRST_STORY[language]]);
   };
 
   const generateNextStory = async (currentStory: string, userChoice: string) => {
@@ -157,12 +154,10 @@ export default function ChatInterface() {
   };
 
   const handleChoice = async (choice: string) => {
-    console.log('Choice selected:', choice);
     if (isLoading) return;
     setIsLoading(true);
 
     const currentMessage = messages[messages.length - 1];
-    console.log('Current message:', currentMessage);
     
     try {
       // 處理語言變化
@@ -183,7 +178,6 @@ export default function ChatInterface() {
       }
 
       if (choice === translations.leaveExperiment[language]) {
-        console.log('User chose to leave experiment');
         setGameStarted(false);
         setMessages([]);
         setIsLoading(false);
@@ -194,20 +188,16 @@ export default function ChatInterface() {
       setMessages(prev => [...prev, { role: "user", content: choice }]);
 
       if (messages.length === 1 && choice === translations.acceptConnection[language]) {
-        console.log('User accepted connection, showing payment modal');
         setShowPaymentModal(true);
         setIsLoading(false);
         return;
       }
 
-      // 如果不是特殊選項，則生成下一個故事
-      console.log('Generating next story for choice:', choice);
+      // 生成下一個故事
       const nextMessage = await generateNextStory(currentMessage.content, choice);
-      console.log('Generated next message:', nextMessage);
       
       if (nextMessage.reward && wallet?.address) {
         try {
-          console.log('Sending reward to user');
           const response = await sendRewardAsset(
             wallet.address.toString(),
             nextMessage.reward,
@@ -224,7 +214,6 @@ export default function ChatInterface() {
             nextMessage
           ]);
         } catch (error) {
-          console.error("Failed to send reward:", error);
           setMessages(prev => [
             ...prev,
             {
@@ -238,7 +227,6 @@ export default function ChatInterface() {
         setMessages(prev => [...prev, nextMessage]);
       }
     } catch (error) {
-      console.error("Error handling choice:", error);
       setMessages(prev => [
         ...prev,
         {
@@ -311,13 +299,11 @@ export default function ChatInterface() {
         setTimeRemaining(gameTime);
 
         // 生成第一個故事回應
-        console.log('Generating first story response after payment');
         const currentMessage = messages[messages.length - 1];
         const nextMessage = await generateNextStory(
           currentMessage.content, 
           translations.acceptConnection[language]
         );
-        console.log('Generated first story response:', nextMessage);
         
         setMessages(prev => [...prev, nextMessage]);
 

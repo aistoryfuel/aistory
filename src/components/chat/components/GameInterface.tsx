@@ -18,7 +18,6 @@ export const GameInterface: React.FC<GameProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log('GameInterface messages updated:', messages);
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
@@ -94,73 +93,70 @@ export const GameInterface: React.FC<GameProps> = ({
           background: "linear-gradient(90deg, transparent, #00ffff66, transparent)",
         },
       }}>
-        {messages.map((message, index) => {
-          console.log(`Rendering message ${index}:`, message);
-          return (
-            <Box
-              key={index}
-              css={{
-                marginBottom: "16px",
-                padding: "15px",
-                borderRadius: "8px",
-                background: message.role === "assistant"
-                  ? "linear-gradient(135deg, #00ffff11, transparent)"
-                  : message.role === "system"
-                  ? "linear-gradient(135deg, #ff00ff11, transparent)"
-                  : "linear-gradient(135deg, #00ffff22, transparent)",
+        {messages.map((message, index) => (
+          <Box
+            key={index}
+            css={{
+              marginBottom: "16px",
+              padding: "15px",
+              borderRadius: "8px",
+              background: message.role === "assistant"
+                ? "linear-gradient(135deg, #00ffff11, transparent)"
+                : message.role === "system"
+                ? "linear-gradient(135deg, #ff00ff11, transparent)"
+                : "linear-gradient(135deg, #00ffff22, transparent)",
+              border: "1px solid #00ffff22",
+              fontSize: "16px",
+              lineHeight: "1.6",
+              position: "relative",
+              overflow: "hidden",
+              animation: "fadeIn 0.3s ease-out",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "1px",
+                background: "linear-gradient(90deg, transparent, #00ffff44, transparent)",
+              },
+            }}
+          >
+            <TypewriterText text={message.content} speed={10} />
+            {message.txHash && (
+              <Box css={{ 
+                marginTop: "10px", 
+                color: "#00ffff",
+                fontSize: "12px",
+                fontFamily: "monospace",
+                padding: "8px",
+                background: "#00ffff0a",
                 border: "1px solid #00ffff22",
-                fontSize: "16px",
-                lineHeight: "1.6",
-                position: "relative",
-                overflow: "hidden",
-                animation: "fadeIn 0.3s ease-out",
-                "&::before": {
-                  content: '""',
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "1px",
-                  background: "linear-gradient(90deg, transparent, #00ffff44, transparent)",
-                },
-              }}
-            >
-              <TypewriterText text={message.content} speed={10} />
-              {message.txHash && (
-                <Box css={{ 
-                  marginTop: "10px", 
-                  color: "#00ffff",
-                  fontSize: "12px",
-                  fontFamily: "monospace",
-                  padding: "8px",
-                  background: "#00ffff0a",
-                  border: "1px solid #00ffff22",
-                  borderRadius: "4px",
-                  wordBreak: "break-all",
-                }}>
-                  {">>"} {translations.transactionHash[language]}: 
-                  <a 
-                    href={`https://app${import.meta.env.VITE_IS_TESTNET === "true" ? "-testnet" : ""}.fuel.network/tx/${message.txHash}/simple`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: "#00ffff",
-                      textDecoration: "underline"
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.textShadow = "0 0 8px #00ffff";
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.textShadow = "none";
-                    }}
-                  >
-                    {message.txHash}
-                  </a>
-                </Box>
-              )}
-            </Box>
-          );
-        })}
+                borderRadius: "4px",
+                wordBreak: "break-all",
+              }}>
+                {">>"} {translations.transactionHash[language]}: 
+                <a 
+                  href={`https://app${import.meta.env.VITE_IS_TESTNET === "true" ? "-testnet" : ""}.fuel.network/tx/${message.txHash}/simple`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#00ffff",
+                    textDecoration: "underline"
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.textShadow = "0 0 8px #00ffff";
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.textShadow = "none";
+                  }}
+                >
+                  {message.txHash}
+                </a>
+              </Box>
+            )}
+          </Box>
+        ))}
         <div ref={messagesEndRef} />
       </Box>
 
@@ -225,7 +221,6 @@ export const GameInterface: React.FC<GameProps> = ({
               disabled={isLoading || shouldDisable}
               onClick={() => {
                 if (!shouldDisable) {
-                  console.log('Choice A clicked:', messages[messages.length - 1].choices!.A);
                   onChoice(messages[messages.length - 1].choices!.A);
                 }
               }}
@@ -269,7 +264,6 @@ export const GameInterface: React.FC<GameProps> = ({
               disabled={isLoading || shouldDisable}
               onClick={() => {
                 if (!shouldDisable) {
-                  console.log('Choice B clicked:', messages[messages.length - 1].choices!.B);
                   onChoice(messages[messages.length - 1].choices!.B);
                 }
               }}
