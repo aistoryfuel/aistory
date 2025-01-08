@@ -36,7 +36,7 @@ export default function ChatInterface() {
     show: false,
     message: ""
   });
-  const [language, setLanguage] = useState<Language>('zh');
+  const [language, setLanguage] = useState<Language>('en');
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
   const [showTimeExpiredModal, setShowTimeExpiredModal] = useState(false);
   
