@@ -421,6 +421,9 @@ export default function ChatInterface() {
         margin: "0 auto",
         background: "#000000",
         position: "relative",
+        "@media (max-width: 768px)": {
+          height: "100vh",
+        },
         "&::before": {
           content: '""',
           position: "absolute",
@@ -440,6 +443,13 @@ export default function ChatInterface() {
           background: "linear-gradient(180deg, #000000 0%, #1a1a1a 100%)",
           borderBottom: "1px solid #00ffff33",
           position: "relative",
+          flexWrap: "wrap",
+          gap: "10px",
+          "@media (max-width: 768px)": {
+            padding: "8px 10px",
+            flexDirection: "column",
+            alignItems: "center",
+          },
           "&::before": {
             content: '""',
             position: "absolute",
@@ -457,13 +467,27 @@ export default function ChatInterface() {
               fontSize: "16px",
               textShadow: "0 0 8px #00ffff",
               animation: "pulse 2s infinite",
+              "@media (max-width: 768px)": {
+                fontSize: "14px",
+                order: "1",
+              },
             }}>
               {translations.gameTimer.timeRemaining[language].replace('{time}', timeRemaining.toString())}
             </Text>
           )}
 
           {/* Right side - All buttons */}
-          <Flex css={{ gap: "10px", marginLeft: "auto" }}>
+          <Flex css={{ 
+            gap: "10px", 
+            marginLeft: "auto",
+            "@media (max-width: 768px)": {
+              marginLeft: "0",
+              width: "100%",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              order: "2",
+            }
+          }}>
             {gameStarted && (
               <Button
                 variant="outlined"
@@ -602,6 +626,10 @@ export default function ChatInterface() {
               borderRadius: "8px",
               background: "linear-gradient(135deg, #00ffff08, transparent)",
               position: "relative",
+              "@media (max-width: 768px)": {
+                width: "95%",
+                padding: "20px",
+              },
               "&::before": {
                 content: '""',
                 position: "absolute",
@@ -627,6 +655,10 @@ export default function ChatInterface() {
                 marginBottom: "30px",
                 textAlign: "center",
                 textShadow: "0 0 8px #00ffff",
+                "@media (max-width: 768px)": {
+                  fontSize: "20px",
+                  marginBottom: "20px",
+                },
               }}>
                 {translations.experimentRules[language]}
               </Text>
@@ -637,6 +669,10 @@ export default function ChatInterface() {
                 textShadow: "0 0 4px #00ffff",
                 letterSpacing: "1px",
                 whiteSpace: "pre-line",
+                "@media (max-width: 768px)": {
+                  fontSize: "14px",
+                  lineHeight: "1.8",
+                },
               }}>
                 {translations.rules[language]}
               </Text>

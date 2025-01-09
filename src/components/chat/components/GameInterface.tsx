@@ -41,12 +41,16 @@ export const GameInterface: React.FC<GameProps> = ({
 
   return (
     <Box css={{ 
-      width: "800px",
+      width: "100%",
+      maxWidth: "800px",
       margin: "0 auto",
-      padding: "20px",
+      padding: "10px",
       background: "#000000",
       position: "relative",
       pointerEvents: shouldDisable ? "none" : "auto",
+      "@media (max-width: 768px)": {
+        padding: "5px",
+      }
     }}>
       {/* 歡迎標題 */}
       <Box css={{
@@ -56,6 +60,10 @@ export const GameInterface: React.FC<GameProps> = ({
         fontWeight: "bold",
         textShadow: "0 0 10px #00ffff",
         marginBottom: "10px",
+        "@media (max-width: 768px)": {
+          fontSize: "24px",
+          marginBottom: "5px",
+        }
       }}>
         AI Story
       </Box>
@@ -73,6 +81,10 @@ export const GameInterface: React.FC<GameProps> = ({
         filter: shouldDisable ? "blur(5px)" : "none",
         transition: "filter 0.3s ease",
         pointerEvents: shouldDisable ? "none" : "auto",
+        "@media (max-width: 768px)": {
+          padding: "10px",
+          height: "calc(100vh - 200px)",
+        },
         "&::-webkit-scrollbar": {
           width: "4px",
         },
@@ -134,6 +146,10 @@ export const GameInterface: React.FC<GameProps> = ({
                 border: "1px solid #00ffff22",
                 borderRadius: "4px",
                 wordBreak: "break-all",
+                "@media (max-width: 768px)": {
+                  fontSize: "10px",
+                  padding: "5px",
+                }
               }}>
                 {">>"} {translations.transactionHash[language]}: 
                 <a 
