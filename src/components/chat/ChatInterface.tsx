@@ -447,8 +447,8 @@ export default function ChatInterface() {
           gap: "10px",
           "@media (max-width: 768px)": {
             padding: "8px 10px",
-            flexDirection: "column",
-            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "center",
           },
           "&::before": {
             content: '""',
@@ -482,10 +482,9 @@ export default function ChatInterface() {
             marginLeft: "auto",
             "@media (max-width: 768px)": {
               marginLeft: "0",
-              width: "100%",
+              gap: "5px",
               justifyContent: "center",
               flexWrap: "wrap",
-              order: "2",
             }
           }}>
             {gameStarted && (

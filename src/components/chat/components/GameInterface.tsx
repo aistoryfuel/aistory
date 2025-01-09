@@ -83,7 +83,8 @@ export const GameInterface: React.FC<GameProps> = ({
         pointerEvents: shouldDisable ? "none" : "auto",
         "@media (max-width: 768px)": {
           padding: "10px",
-          height: "calc(100vh - 200px)",
+          height: "calc(100vh - 350px)",
+          marginBottom: "20px",
         },
         "&::-webkit-scrollbar": {
           width: "4px",
