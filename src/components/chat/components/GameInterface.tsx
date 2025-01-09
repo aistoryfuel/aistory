@@ -135,7 +135,7 @@ export const GameInterface: React.FC<GameProps> = ({
               },
             }}
           >
-            <TypewriterText text={message.content} speed={10} />
+            <TypewriterText text={message.content} speed={5} />
             {message.txHash && (
               <Box css={{ 
                 marginTop: "10px", 
